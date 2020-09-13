@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Comments")
-//@NamedQuery(name = "Comments.findAll", query = "SELECT c FROM Comments c")
+@NamedQuery(name = "Comments.findAll", query = "SELECT c FROM Comments c")
 public class Comments implements Serializable {
 	/**
 	 * 
