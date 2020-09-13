@@ -13,8 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "Comments")
-//@NamedQuery(name = "Comments.findAll", query = "SELECT c FROM Comments c")
+@Table(name = "Comments")
+@NamedQuery(name = "Comments.findAll", query = "SELECT c FROM Comments c")
 public class Comments implements Serializable {
 	/**
 	 * 
