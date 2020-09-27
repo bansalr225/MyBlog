@@ -115,6 +115,12 @@ public class User implements Serializable {
 		Like = like;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", uuid=" + uuid + ", name=" + name + ", email=" + email + ", password=" + password
+				+ "]";
+	}
+
 
 
 }
