@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "Post")
 @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p")
 public class Post implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -28,27 +28,25 @@ public class Post implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@Column(name = "uuid", unique = true)
 	private int uuid;
-	
+
 	@Column(name = "content")
 	private String content;
-	
+
 	@Column(name = "createdTime")
 	private Date createdTime;
-	
+
 	@Column(name = "status")
 	private String status;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
 
 	@OneToMany(mappedBy = "user")
 	private List<Comments> comments;
-	
 
 	@OneToMany(mappedBy = "user")
 	private List<Like_Post> Like;
@@ -56,7 +54,7 @@ public class Post implements Serializable {
 	public Post() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -120,10 +118,5 @@ public class Post implements Serializable {
 	public void setLike(List<Like_Post> like) {
 		Like = like;
 	}
-
-
-
-
-	
 
 }

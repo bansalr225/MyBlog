@@ -40,37 +40,29 @@ public class UserController {
 		userService.saveUser(user);
 		return new RestResponse<String>(false, "201", null, "Record Saved");
 	}
-	
+
 	@PostMapping("/login")
 	public RestResponse<String> login(@RequestBody UserPojo authenticationRequest) throws Exception {
 		try {
-			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword())
-			);
-		}
-		catch (BadCredentialsException e) {
-	    	throw new UserNotFoundException("Invalid Credentials");
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
+					authenticationRequest.getPassword()));
+		} catch (BadCredentialsException e) {
+			throw new UserNotFoundException("Invalid Credentials");
 		}
 
-
-		final UserDetails userDetails = userDetailsService
-				.loadUserByUsername(authenticationRequest.getEmail());
-	
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
 
 		final String jwt = jwtTokenUtil.generateToken(userDetails);
 
-		return new RestResponse<String>(true, "200", "jwt= "+jwt, "Successfully LoggedIn");
+		return new RestResponse<String>(true, "200", "jwt= " + jwt, "Successfully LoggedIn");
 
 	}
-	
-	
 
 	@GetMapping("/getAllUsers")
-	public RestResponse<List<User>> getAllUsers()
-	{
-		List<User> user=userService.getAllUsers();
-		if(user!=null)
-		return new RestResponse<List<User>>(false, "200", user, "success");
+	public RestResponse<List<User>> getAllUsers() {
+		List<User> user = userService.getAllUsers();
+		if (user != null)
+			return new RestResponse<List<User>>(false, "200", user, "success");
 		return new RestResponse<List<User>>(false, "200", null, "not found");
 
 	}
