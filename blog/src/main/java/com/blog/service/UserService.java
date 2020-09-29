@@ -10,7 +10,7 @@ import com.blog.pojo.UserPojo;
 @Service
 public interface UserService {
 
-	public void saveUser(UserPojo user);
+	public boolean saveUser(UserPojo user);
 
 	public List<User> getAllUsers();
 

@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	private UserRepo userRepo;
 
 	@Override
-	public void saveUser(UserPojo userpojo) {
+	public boolean saveUser(UserPojo userpojo) {
 
 		User user = new User();
 		user.setEmail(userpojo.getEmail());
@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(hashedPassword);
 		user.setUuid(BlogUtils.getRandomNumber());
 		userRepo.save(user);
+		return true;
 	}
 
 	private String hashPassword(String password) {
@@ -50,7 +51,6 @@ public class UserServiceImpl implements UserService {
 	public Boolean login(UserPojo userpojo) {
 
 	User user=userRepo.getUser(userpojo.getEmail());
-	System.out.println(user);
 	if(user==null)
 	{
 		throw new UserNotFoundException("Invalid Email");
